@@ -4,34 +4,40 @@ import { useContext, useState } from "react";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { addUser } from "../../api/usersService";
+import Alert from "react-bootstrap/Alert";
 
 function UserAdd() {
   const { handlerUsersDisplay } = useContext(userContext);
   const { showPopUpUserAdd, setShowPopUpUserAdd } = useContext(uiContext);
 
   const [message, setMessage] = useState(null);
-  const [statusMessage, setStatusMessage] = useState(null); // red, green
+  const [statusMessage, setStatusMessage] = useState(null); // error | success
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
   function submitAddUser(event) {
     event.preventDefault();
-    (async () => {
-      const responce = await addUser(name, email);
-      if (responce.error) {
-        setMessage(responce.error);
-        setStatusMessage("red");
-      } else {
-        setMessage(
-          `Successfully added user, Name: ${responce.name}, Email ${responce.email}`
-        );
-        setStatusMessage("green");
-        setName("");
-        setEmail("");
-        await handlerUsersDisplay(); // Обновить отображение пользователей
-        console.log(responce);
-      }
-    })();
+    if (!name | !email) {
+      setMessage("Fill in your name and email");
+      setStatusMessage("error");
+    } else {
+      (async () => {
+        const responce = await addUser(name, email);
+        if (responce.error) {
+          setMessage(responce.error);
+          setStatusMessage("error");
+        } else {
+          setMessage(
+            `Successfully added user, Name: ${responce.name}, Email ${responce.email}`
+          );
+          setStatusMessage("success");
+          setName("");
+          setEmail("");
+          await handlerUsersDisplay(); // Обновить отображение пользователей
+          console.log(responce);
+        }
+      })();
+    }
   }
 
   const handleClose = () => setShowPopUpUserAdd(false);
@@ -43,7 +49,16 @@ function UserAdd() {
         </Modal.Header>
         <Form onSubmit={submitAddUser}>
           <Modal.Body>
-            {message && <p className={statusMessage}>{message}</p>}
+            {message &&
+              (statusMessage === "error" ? (
+                <Alert key={statusMessage} variant="danger">
+                  {message}
+                </Alert>
+              ) : (
+                <Alert key={statusMessage} variant="success">
+                  {message}
+                </Alert>
+              ))}
             <Form.Group className="mb-3" controlId="formBasicName">
               <Form.Label>Name</Form.Label>
               <Form.Control
