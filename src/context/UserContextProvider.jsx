@@ -5,6 +5,9 @@ import { fetchUsers } from "../api/usersService";
 import { userContext } from "./context";
 
 function UserContextProvider({ children }) {
+  //isLoading, error
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   // Данные пользователей
   const [users, setUsers] = useState(null);
   // Работа с пагинацией и страницами
@@ -14,8 +17,15 @@ function UserContextProvider({ children }) {
   async function handlerUsersDisplay() {
     const response = await fetchUsers(currentPage, 5);
     console.log(response);
-    setUsers(response.data);
-    setTotalPages(response.meta.total_pages);
+    if (response.data.length >= 0) {
+      setUsers(response.data);
+      setTotalPages(response.meta.total_pages);
+    } else {
+      setError(
+        "Connection to the server has been lost. Please reload the page."
+      );
+    }
+    setIsLoading(false);
   }
   useEffect(() => {
     handlerUsersDisplay();
@@ -25,6 +35,10 @@ function UserContextProvider({ children }) {
   return (
     <userContext.Provider
       value={{
+        isLoading,
+        setIsLoading,
+        error,
+        setError,
         handlerUsersDisplay,
         users,
         setUsers,
