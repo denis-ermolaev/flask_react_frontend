@@ -13,7 +13,7 @@ export async function fetchUsers(page, per_page) {
     return responce.data;
   } catch (error) {
     console.error(error.response?.data || error.message);
-    return error.response?.data;
+    return error.response?.data || error.message;
   }
 }
 
@@ -23,7 +23,7 @@ export async function fetchUser(id) {
     return response.data;
   } catch (error) {
     console.error(error.response?.data || error.message);
-    return error.response?.data;
+    return error.response?.data || error.message;
   }
 }
 
@@ -36,6 +36,6 @@ export async function addUser(name, email) {
     return response.data;
   } catch (error) {
     console.error(error.response?.data || error.message);
-    return error.response?.data;
+    return error.response?.data || error.message;
   }
 }

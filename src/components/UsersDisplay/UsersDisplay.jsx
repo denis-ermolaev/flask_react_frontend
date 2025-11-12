@@ -23,7 +23,7 @@ function UsersDisplay() {
     return (
       <Alert variant="danger" className="mt-4">
         <Alert.Heading>Error!</Alert.Heading>
-        <p>{error}</p>
+        <p>{typeof error === "string" ? error : error.message}</p>
       </Alert>
     );
   }
@@ -31,7 +31,6 @@ function UsersDisplay() {
     <>
       {users && users.length > 0 ? (
         <>
-          {" "}
           <Table striped bordered hover responsive>
             <thead>
               <tr>
@@ -44,7 +43,7 @@ function UsersDisplay() {
                 return (
                   <tr
                     key={value.id}
-                    style={{ cursor: "pointer" }}
+                    className="clickable-row"
                     onClick={() => {
                       setShowPopUpUserView(value.id);
                     }}
@@ -56,7 +55,7 @@ function UsersDisplay() {
               })}
             </tbody>
           </Table>
-          <PaginationCast />{" "}
+          <PaginationCast />
         </>
       ) : (
         <Alert variant="info" className="mt-4">
