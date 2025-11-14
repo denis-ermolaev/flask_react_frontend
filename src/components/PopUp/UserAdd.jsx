@@ -5,6 +5,7 @@ import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { addUser } from "../../api/usersService";
 import Alert from "react-bootstrap/Alert";
+import FloatingLabel from "react-bootstrap/FloatingLabel";
 
 function UserAdd() {
   const { handlerUsersDisplay } = useContext(userContext);
@@ -60,23 +61,33 @@ function UserAdd() {
                 </Alert>
               ))}
             <Form.Group className="mb-3" controlId="formBasicName">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter Name"
-                onChange={(event) => setName(event.target.value)}
-                value={name}
-              />
+              <FloatingLabel
+                controlId="floatingInput"
+                label="Name"
+                className="mb-3"
+              >
+                <Form.Control
+                  type="text"
+                  placeholder="Enter Name"
+                  onChange={(event) => setName(event.target.value)}
+                  value={name}
+                />
+              </FloatingLabel>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter email"
-                onChange={(event) => setEmail(event.target.value)}
-                value={email}
-              />
+              <FloatingLabel
+                controlId="floatingInput"
+                label="Email address"
+                className="mb-3"
+              >
+                <Form.Control
+                  type="email"
+                  placeholder="Enter email"
+                  onChange={(event) => setEmail(event.target.value)}
+                  value={email}
+                />
+              </FloatingLabel>
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>

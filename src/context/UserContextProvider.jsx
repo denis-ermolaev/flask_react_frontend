@@ -15,6 +15,7 @@ function UserContextProvider({ children }) {
   const [totalPages, setTotalPages] = useState(null);
 
   async function handlerUsersDisplay() {
+    setIsLoading(true);
     const response = await fetchUsers(currentPage, 5);
     console.log(response);
     if (response.data.length >= 0) {

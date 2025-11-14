@@ -15,11 +15,13 @@ export default function PaginationCast() {
       <>
         <Pagination>
           <Pagination.First
+            className="d-none d-sm-block"
             onClick={() => {
               setCurrentPage(1);
             }}
           />
           <Pagination.Prev
+            className="d-none d-sm-block"
             onClick={() => {
               setCurrentPage((prev) => prev - 1 || 1);
             }}
@@ -47,6 +49,7 @@ export default function PaginationCast() {
             }
           })}
           <Pagination.Next
+            className="d-none d-sm-block"
             onClick={() => {
               setCurrentPage((prev) => {
                 if (prev + 1 <= totalPages) {
@@ -58,6 +61,7 @@ export default function PaginationCast() {
             }}
           />
           <Pagination.Last
+            className="d-none d-sm-block"
             onClick={() => {
               setCurrentPage(totalPages);
             }}
