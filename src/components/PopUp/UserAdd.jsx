@@ -1,6 +1,6 @@
 import Modal from "react-bootstrap/Modal";
 import { userContext, uiContext } from "../../context/context";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { addUser } from "../../api/usersService";
@@ -16,14 +16,6 @@ function UserAdd() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    if (statusMessage || message) {
-      setMessage(null);
-      setStatusMessage(null);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [name, email]);
 
   async function submitAddUser(event) {
     event.preventDefault();
@@ -83,7 +75,13 @@ function UserAdd() {
                 <Form.Control
                   type="text"
                   placeholder="Enter Name"
-                  onChange={(event) => setName(event.target.value)}
+                  onChange={(event) => {
+                    setName(event.target.value);
+                    if (statusMessage || message) {
+                      setMessage(null);
+                      setStatusMessage(null);
+                    }
+                  }}
                   value={name}
                   disabled={isLoading} // Блокируем поле во время загрузки
                 />
@@ -99,7 +97,13 @@ function UserAdd() {
                 <Form.Control
                   type="email"
                   placeholder="Enter email"
-                  onChange={(event) => setEmail(event.target.value)}
+                  onChange={(event) => {
+                    setEmail(event.target.value);
+                    if (statusMessage || message) {
+                      setMessage(null);
+                      setStatusMessage(null);
+                    }
+                  }}
                   value={email}
                   disabled={isLoading} // Блокируем поле во время загрузки
                 />

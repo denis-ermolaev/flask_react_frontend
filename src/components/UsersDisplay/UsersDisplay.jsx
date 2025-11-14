@@ -11,12 +11,39 @@ function UsersDisplay() {
   const { users, isLoading, error } = useContext(userContext);
   const { setShowPopUpUserView, setShowPopUpUserAdd } = useContext(uiContext);
 
+  // Кнопка добавить пользователя и пагинация
+  const PgBut = (
+    <div className="d-flex flex-column align-items-center gap-3 mt-4">
+      <UsersPagination />
+      <Button
+        variant="dark"
+        onClick={() => {
+          setShowPopUpUserAdd(true);
+        }}
+      >
+        Add a new user
+      </Button>
+    </div>
+  );
+
   if (error) {
     return (
       <Alert variant="danger" className="mt-4">
         <Alert.Heading>Error!</Alert.Heading>
         <p>{typeof error === "string" ? error : error.message}</p>
       </Alert>
+    );
+  }
+  if (users?.length === 0) {
+    return (
+      <>
+        <Alert variant="secondary" className="mt-4">
+          <Alert.Heading>
+            There are no users yet. Add the first one.!
+          </Alert.Heading>
+        </Alert>
+        {PgBut}
+      </>
     );
   }
   return (
@@ -84,17 +111,7 @@ function UsersDisplay() {
             })}
         </tbody>
       </Table>
-      <div className="d-flex flex-column align-items-center gap-3 mt-4">
-        <UsersPagination />
-        <Button
-          variant="dark"
-          onClick={() => {
-            setShowPopUpUserAdd(true);
-          }}
-        >
-          Add a new user
-        </Button>
-      </div>
+      {PgBut}
     </>
   );
 }
