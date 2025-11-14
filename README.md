@@ -43,6 +43,9 @@ python -m venv .venv
 # 3. Установите зависимости
 pip install -r requirements.txt
 
+# 4. Инициализация BD
+python database_handler.py
+
 # 4. Запустите Flask-сервер
 flask run
 ```
