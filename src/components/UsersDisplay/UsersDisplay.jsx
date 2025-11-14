@@ -1,9 +1,8 @@
 import Table from "react-bootstrap/Table";
 import { userContext, uiContext } from "../../context/context";
 import { useContext } from "react";
-import PaginationCast from "./Pagination";
+import UsersPagination from "./UsersPagination";
 import { Button } from "react-bootstrap";
-import Spinner from "react-bootstrap/Spinner";
 import Alert from "react-bootstrap/Alert";
 import { range } from "../../hooks/usePagination";
 import { Placeholder } from "react-bootstrap";
@@ -31,8 +30,8 @@ function UsersDisplay() {
       >
         <thead>
           <tr>
-            <th style={{ width: "30%" }}>Name</th>
-            <th style={{ width: "70%" }}>Email</th>
+            <th style={{ width: "40%" }}>Name</th>
+            <th style={{ width: "60%" }}>Email</th>
           </tr>
         </thead>
         <tbody>
@@ -85,17 +84,8 @@ function UsersDisplay() {
             })}
         </tbody>
       </Table>
-
-      {/* // <Alert variant="info" className="mt-4">
-        //   <p className="mb-0">
-        //     No users have been added yet. Click the button below to add the
-        //     first one!
-        //   </p>
-        // </Alert> */}
-      <div className="d-flex justify-content-center">
-        <PaginationCast />
-      </div>
-      <div className="d-flex justify-content-center">
+      <div className="d-flex flex-column align-items-center gap-3 mt-4">
+        <UsersPagination />
         <Button
           variant="dark"
           onClick={() => {

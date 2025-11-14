@@ -1,10 +1,4 @@
-.red {
-  color: red;
-}
-
-.green {
-  color: green;
-}
+/* Для строк таблицы */
 .clickable-row {
   cursor: pointer;
 }
