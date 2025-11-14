@@ -37,10 +37,10 @@ function UserView() {
           {!error && (
             <Placeholder as="div" animation="glow">
               <p>
-                Name: <Placeholder xs={6} />
+                <strong>Name:</strong> <Placeholder xs={6} />
               </p>
               <p>
-                E-mail: <Placeholder xs={8} />
+                <strong>E-mail:</strong> <Placeholder xs={8} />
               </p>
             </Placeholder>
           )}
@@ -60,8 +60,12 @@ function UserView() {
           <Modal.Title>More about user (ID {userData.id})</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>Name: {userData.name}</p>
-          <p>E-mail: {userData.email}</p>
+          <p>
+            <strong>Name:</strong> {userData.name}
+          </p>
+          <p>
+            <strong>E-mail:</strong> {userData.email}
+          </p>
         </Modal.Body>
       </Modal>
     </>
