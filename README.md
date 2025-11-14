@@ -1,12 +1,65 @@
-# React + Vite
+# Тестовое задание для "Digital-агентство Победа"
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Это fullstack-приложение для управления пользователями, разработанное в рамках тестового задания. Приложение позволяет просматривать (с пагинацией) и добавлять пользователей.
 
-Currently, two official plugins are available:
+## Стек технологий
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Фронтенд:**
+  - [React](https://reactjs.org/)
+  - [React Bootstrap](https://react-bootstrap.github.io/)
+  - [Axios](https://axios-http.com/)
+- **Бэкенд:**
+  - [Flask](https://flask.palletsprojects.com/)
+  - [Flask-CORS](https://flask-cors.readthedocs.io/)
+- **База данных:**
+  - SQLite
 
-## Expanding the ESLint configuration
+## Особенности реализации
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Вместо Vanilla JS использован React**
+- **Управление состоянием через Context API:**
+- Логика пагинации вынесена в переиспользуемый кастомный хук `usePagination`
+- **Индикация загрузки (Skeleton UI):**
+- **Обработка ошибок и разных состояний**
+- **Адаптивный дизайн** - Компоненты (Navbar, Pagination) адаптируются под разные размеры экрана, скрывая второстепенные элементы на мобильных устройствах.
+
+## Установка и запуск
+
+### 1. Настройка бэкенда
+
+Откройте терминал в корневой папке проекта.
+
+```
+# 1. Перейдите в папку с бэкендом
+cd backend
+
+# 2. Создайте и активируйте виртуальное окружение
+python -m venv .venv
+# Для Windows:
+# venv\Scripts\activate
+# Для macOS/Linux:
+# source venv/bin/activate
+
+# 3. Установите зависимости
+pip install -r requirements.txt
+
+# 4. Запустите Flask-сервер
+flask run
+```
+
+Сервер будет доступен по адресу `http://127.0.0.1:5000`!
+
+### 2. Настройка фронтенда
+
+Откройте **новый** терминал в корневой папке проекта.
+
+```
+# 1. Перейдите в папку с фронтендом
+cd frontend
+
+# 2. Установите зависимости
+npm install
+
+# 3. Запустите React-приложение
+npm run dev
+```
