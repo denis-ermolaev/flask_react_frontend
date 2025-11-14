@@ -16,8 +16,11 @@ function App() {
               width="30"
               height="30"
               className="d-inline-block align-top"
-            />{" "}
-            Тестовое задание для "Digital агентство Победа"
+            />
+            <span className="d-none d-md-inline">
+              {" "}
+              Тестовое задание для "Digital агентство Победа"
+            </span>
           </Navbar.Brand>
         </Container>
       </Navbar>

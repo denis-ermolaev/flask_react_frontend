@@ -23,11 +23,8 @@ function UserAdd() {
       setStatusMessage("error");
     } else {
       (async () => {
-        const responce = await addUser(name, email);
-        if (responce.error) {
-          setMessage(responce.error);
-          setStatusMessage("error");
-        } else {
+        try {
+          const responce = await addUser(name, email);
           setMessage(
             `Successfully added user, Name: ${responce.name}, Email ${responce.email}`
           );
@@ -36,6 +33,14 @@ function UserAdd() {
           setEmail("");
           await handlerUsersDisplay(); // Обновить отображение пользователей
           console.log(responce);
+        } catch (error) {
+          if (error.response) {
+            setStatusMessage("error");
+            setMessage(error.response.data.error || "An error occurred.");
+          } else {
+            setStatusMessage("error");
+            setMessage(error.message || "An error occurred.");
+          }
         }
       })();
     }

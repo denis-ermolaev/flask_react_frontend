@@ -3,26 +3,32 @@ import { uiContext } from "../../context/context";
 import { useContext, useEffect, useState } from "react";
 import { fetchUser } from "../../api/usersService";
 import { Placeholder, Spinner } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 function UserView() {
   const { showPopUpUserView, setShowPopUpUserView } = useContext(uiContext);
 
   const [userData, setUserData] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     (async () => {
-      const responce = await fetchUser(showPopUpUserView);
-      setUserData(responce);
+      try {
+        const response = await fetchUser(showPopUpUserView);
+        setUserData(response);
+      } catch {
+        setError(
+          "Connection to the server has been lost. Please reload the page."
+        );
+      }
     })();
   }, [showPopUpUserView]);
 
   const handleClose = () => setShowPopUpUserView(false);
-  if (!userData) {
+  if (!userData | error) {
     return (
       <Modal show={showPopUpUserView} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>
-            <p>More about users</p>
-          </Modal.Title>
+          <Modal.Title>More about user</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Placeholder as="div" animation="glow">
@@ -33,6 +39,11 @@ function UserView() {
               E-mail: <Placeholder xs={8} />
             </p>
           </Placeholder>
+          {error && (
+            <Alert variant="danger" className="mt-4">
+              {typeof error === "string" ? error : error.message}
+            </Alert>
+          )}
         </Modal.Body>
       </Modal>
     );
@@ -41,7 +52,7 @@ function UserView() {
     <>
       <Modal show={showPopUpUserView} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>More about users (ID {userData.id})</Modal.Title>
+          <Modal.Title>More about user (ID {userData.id})</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <p>Name: {userData.name}</p>

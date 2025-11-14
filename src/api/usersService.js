@@ -12,8 +12,8 @@ export async function fetchUsers(page, per_page) {
     });
     return responce.data;
   } catch (error) {
-    console.error(error.response?.data || error.message);
-    return error.response?.data || error.message;
+    console.error(error);
+    throw error;
   }
 }
 
@@ -22,8 +22,8 @@ export async function fetchUser(id) {
     const response = await axios.get(`${URL}/user/${id}`);
     return response.data;
   } catch (error) {
-    console.error(error.response?.data || error.message);
-    return error.response?.data || error.message;
+    console.error(error);
+    throw error;
   }
 }
 
@@ -35,7 +35,7 @@ export async function addUser(name, email) {
     });
     return response.data;
   } catch (error) {
-    console.error(error.response?.data || error.message);
-    return error.response?.data || error.message;
+    console.error(error);
+    throw error;
   }
 }

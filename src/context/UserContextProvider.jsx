@@ -16,12 +16,12 @@ function UserContextProvider({ children }) {
 
   async function handlerUsersDisplay() {
     setIsLoading(true);
-    const response = await fetchUsers(currentPage, 5);
-    console.log(response);
-    if (response.data.length >= 0) {
+    try {
+      const response = await fetchUsers(currentPage, 5);
+      console.log(response);
       setUsers(response.data);
       setTotalPages(response.meta.total_pages);
-    } else {
+    } catch {
       setError(
         "Connection to the server has been lost. Please reload the page."
       );
