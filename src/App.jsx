@@ -17,7 +17,15 @@ function App() {
               height="30"
               className="d-inline-block align-top"
             />
-            <span className="d-none d-md-inline">
+            {" + "}
+            <img
+              alt="Flask Logo"
+              src="/palletsprojects_flask-icon.svg"
+              width="30"
+              height="30"
+              className="d-inline-block align-top"
+            />
+            <span className="d-md-inline d-none">
               {" "}
               Тестовое задание для "Digital агентство Победа"
             </span>
