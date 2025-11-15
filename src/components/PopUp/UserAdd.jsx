@@ -32,7 +32,6 @@ function UserAdd() {
         setStatusMessage("success");
         setName("");
         setEmail("");
-        await handlerUsersDisplay(); // Обновить отображение пользователей
       } catch (error) {
         if (error.response) {
           setStatusMessage("error");
@@ -41,9 +40,9 @@ function UserAdd() {
           setStatusMessage("error");
           setMessage(error.message || "An error occurred.");
         }
-      } finally {
-        setIsLoading(false);
       }
+      setIsLoading(false);
+      await handlerUsersDisplay(); // Обновить отображение пользователей
     }
   }
 

@@ -6,6 +6,7 @@ import { Button } from "react-bootstrap";
 import Alert from "react-bootstrap/Alert";
 import { range } from "../../hooks/usePagination";
 import { Placeholder } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 function UsersDisplay() {
   const { users, isLoading, error } = useContext(userContext);
@@ -48,69 +49,71 @@ function UsersDisplay() {
   }
   return (
     <>
-      <Table
-        striped
-        bordered
-        hover
-        responsive
-        style={{ tableLayout: "fixed", width: "100%" }}
-      >
-        <thead>
-          <tr>
-            <th style={{ width: "40%" }}>Name</th>
-            <th style={{ width: "60%" }}>Email</th>
-          </tr>
-        </thead>
-        <tbody>
-          {isLoading &&
-            range(1, 5).map((value) => {
-              return (
-                <tr key={value}>
-                  <td>
-                    <Placeholder as="div" animation="glow">
-                      <p style={{ height: "0.5rem" }}>
-                        <Placeholder xs={8} />
-                      </p>
-                    </Placeholder>
-                  </td>
-                  <td>
-                    <Placeholder as="div" animation="glow">
-                      <p style={{ height: "0.5rem" }}>
-                        <Placeholder xs={3} />
-                      </p>
-                    </Placeholder>
-                  </td>
-                </tr>
-              );
-            })}
-          {!isLoading &&
-            users?.map((value) => {
-              return (
-                <tr
-                  key={value.id}
-                  className="clickable-row"
-                  onClick={() => {
-                    setShowPopUpUserView(value.id);
-                  }}
-                >
-                  <td>{value.name}</td>
-                  <td>{value.email}</td>
-                </tr>
-              );
-            })}
-          {!isLoading &&
-            users?.length < 5 &&
-            range(1, 5 - users?.length).map((value) => {
-              return (
-                <tr key={value}>
-                  <td colSpan={2}>
-                    <p style={{ height: "0.5rem" }}></p>
-                  </td>
-                </tr>
-              );
-            })}
-        </tbody>
-      </Table>
+      <Container>
+        <Table
+          striped
+          bordered
+          hover
+          responsive
+          style={{ tableLayout: "fixed", width: "100%" }}
+        >
+          <thead>
+            <tr>
+              <th style={{ width: "40%" }}>Name</th>
+              <th style={{ width: "60%" }}>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            {isLoading &&
+              range(1, 5).map((value) => {
+                return (
+                  <tr key={value}>
+                    <td>
+                      <Placeholder as="div" animation="glow">
+                        <p style={{ height: "0.5rem" }}>
+                          <Placeholder xs={8} />
+                        </p>
+                      </Placeholder>
+                    </td>
+                    <td>
+                      <Placeholder as="div" animation="glow">
+                        <p style={{ height: "0.5rem" }}>
+                          <Placeholder xs={3} />
+                        </p>
+                      </Placeholder>
+                    </td>
+                  </tr>
+                );
+              })}
+            {!isLoading &&
+              users?.map((value) => {
+                return (
+                  <tr
+                    key={value.id}
+                    className="clickable-row"
+                    onClick={() => {
+                      setShowPopUpUserView(value.id);
+                    }}
+                  >
+                    <td>{value.name}</td>
+                    <td>{value.email}</td>
+                  </tr>
+                );
+              })}
+            {!isLoading &&
+              users?.length < 5 &&
+              range(1, 5 - users?.length).map((value) => {
+                return (
+                  <tr key={value}>
+                    <td colSpan={2}>
+                      <p style={{ height: "0.5rem" }}></p>
+                    </td>
+                  </tr>
+                );
+              })}
+          </tbody>
+        </Table>
+      </Container>
       {PgBut}
     </>
   );
