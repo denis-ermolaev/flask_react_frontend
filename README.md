@@ -23,18 +23,25 @@
 - **Обработка ошибок и разных состояний**
 - **Адаптивный дизайн** - Компоненты (Navbar, Pagination) адаптируются под разные размеры экрана, скрывая второстепенные элементы на мобильных устройствах.
 
+## Скриншоты
+
+![Главный экран](./images/main.png)
+![Адаптивный дизайн](images/adaptive.png)
+![Скелетон](images/skeleton.png)
+![Добавление нового пользователя](images/newusererror.png)
+
 ## Установка и запуск
 
 ### 1. Настройка бэкенда
+Ссылка на бэкенд https://github.com/denis-ermolaev/flask_react_backend
+
 
 Откройте терминал в корневой папке проекта.
 
 ```
 # 1. Перейдите в папку с бэкендом
 
-Ссылка на бэкенд https://github.com/denis-ermolaev/flask_react_backend
-
-cd backend
+cd flask_react_backend
 
 # 2. Создайте и активируйте виртуальное окружение
 python -m venv .venv
@@ -61,7 +68,7 @@ flask run
 
 ```
 # 1. Перейдите в папку с фронтендом
-cd frontend
+cd flask_react_frontend
 
 # 2. Установите зависимости
 npm install
