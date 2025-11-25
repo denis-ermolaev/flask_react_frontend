@@ -51,7 +51,7 @@ export async function fetchUsers(page, per_page) {
  */
 export async function fetchUser(id) {
   try {
-    const response = await axios.get(`${URL}/user/${parseInt(id)}`);
+    const response = await axios.get(`${URL}/users/${parseInt(id)}`);
     return response.data;
   } catch (error) {
     console.error(error);
