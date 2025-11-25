@@ -31,6 +31,9 @@
 
 ```
 # 1. Перейдите в папку с бэкендом
+
+Ссылка на бэкенд https://github.com/denis-ermolaev/flask_react_backend
+
 cd backend
 
 # 2. Создайте и активируйте виртуальное окружение
